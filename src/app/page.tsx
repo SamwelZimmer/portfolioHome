@@ -15,7 +15,7 @@ export default function Home() {
         </div>
 
         <div>
-          <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master's Thesis</Link>
+          <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
         </div>
     </main>
   )
