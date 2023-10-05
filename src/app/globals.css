@@ -17,3 +17,7 @@ body::-webkit-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+
+.brutal-shadow {
+    box-shadow: black 4px 6px;
+}

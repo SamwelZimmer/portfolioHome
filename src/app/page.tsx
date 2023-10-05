@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import RecentProjects from '../../sections/RecentProjects';
+
 export default function Home() {
   return (
-    <main className="">
+    <main className="w-screen">
         <h1>Samwel Zimmer</h1>
 
         <div>
@@ -17,6 +19,8 @@ export default function Home() {
         <div>
           <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
         </div>
+
+        <RecentProjects />
     </main>
   )
 }
