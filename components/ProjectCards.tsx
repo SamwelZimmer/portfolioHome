@@ -17,11 +17,49 @@ interface CardProps {
     info?: string;
     height?: number;
     width?: number;
+    type: StyleType;
 }
 
 const cutOfLength = 65;
 
-export const CleanCard = ({ title, summary, date, link, info, height, width }: CardProps) => {
+type CardStyleDefinition = {
+    [key in StyleType]: string;
+  };
+
+const cardStyles: {
+    card: CardStyleDefinition;
+    title: CardStyleDefinition;
+    summary: CardStyleDefinition;
+    date: CardStyleDefinition;
+    } = {
+    "card": {
+        "clean": `relative cursor-pointer bg-white w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border rounded-md shadow-md`,
+        "night": `relative cursor-pointer bg-slate-800 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border border-black rounded-md`,
+        "pastel": "relative cursor-pointer bg-[#BDD1C3] w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-md rounded-md",
+        "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border-4 border-black rounded-lg",
+    },
+    "title": {
+        "clean": "text-xl",
+        "night": "text-xl text-gray-300",
+        "pastel": "text-xl",
+        "brutal": "text-xl font-medium",
+    },
+    "summary": {
+        "clean": "text-gray-500 font-light",
+        "night": "text-gray-400 font-light",
+        "pastel": "text-gray-700 font-light",
+        "brutal": "text-black font-light",
+    },
+    "date": {
+        "clean": "font-light text-gray-400",
+        "night": "font-light text-gray-400",
+        "pastel": "font-light text-gray-600",
+        "brutal": "",
+    },
+
+}
+
+export const Card = ({ title, id, summary, date, link, info, height, width, type }: CardProps) => {
 
     const [showInfo, setShowInfo] = useState(false);
 
@@ -39,121 +77,18 @@ export const CleanCard = ({ title, summary, date, link, info, height, width }: C
     };
 
     return (
-        <div style={optionalStyles} className={`relative bg-white w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border rounded-md shadow-md`}>
+        <div onClick={() => openInNewTab(`https://projects.samwelzimmer.com/${id}`)} style={optionalStyles} className={cardStyles.card[type]}>
             <div className="w-full">
-                <span className="text-xl">{title}</span> 
-                <p className="text-gray-500 font-light">{showInfo ? info : summary}</p>
+                <span className={cardStyles.title[type]}>{title}</span> 
+                <p className={cardStyles.summary[type]}>{showInfo ? info : summary}</p>
             </div>
 
-            <span className="font-light text-gray-400">{concatenateStringToLength(monthNumberToString(date.month), 3)} {date.year}</span>
+            <span className={cardStyles.date[type]}>{concatenateStringToLength(monthNumberToString(date.month), 3)} {date.year}</span>
 
             <div className="absolute flex right-2 bottom-2">
-                { link && <ExternalLinkButton link={link} type="brutal" /> }
-                { info && <InfoButton visible={showInfo} setVisible={setShowInfo} type="brutal" /> }
+                { link && <ExternalLinkButton link={link} type={type} /> }
+                { info && <InfoButton visible={showInfo} setVisible={setShowInfo} type={type} /> }
             </div>            
-        </div>
-    );
-};
-
-export const NightCard = ({ title, summary, date, link, info, height, width }: CardProps) => {
-
-    const [showInfo, setShowInfo] = useState(false);
-
-    const optionalStyles = {
-        ...width && { width },
-        ...height && { height }
-    };
-
-    if (info && info.length > cutOfLength) {
-        info = concatenateStringToLength(info, cutOfLength) + "...";
-    };
-
-    if (summary && summary.length > cutOfLength) {
-        summary = concatenateStringToLength(summary, cutOfLength) + "...";
-    };
-
-    return (
-        <div style={optionalStyles} className={`relative bg-slate-800 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border border-black rounded-md`}>
-            <div className="w-full">
-                <span className="text-xl text-gray-300">{title}</span> 
-                <p className="text-gray-400 font-light">{showInfo ? info : summary}</p>
-            </div>
-
-            <span className="font-light text-gray-400">{concatenateStringToLength(monthNumberToString(date.month), 3)} {date.year}</span>
-
-            <div className="absolute flex right-2 bottom-2">
-                { link && <ExternalLinkButton link={link} type="brutal" /> }
-                { info && <InfoButton visible={showInfo} setVisible={setShowInfo} type="brutal" /> }
-            </div>            
-        </div>
-    );
-};
-
-export const PastelCard = ({ title, summary, date, link, info, height, width }: CardProps) => {
-
-    const [showInfo, setShowInfo] = useState(false);
-
-    const optionalStyles = {
-        ...width && { width },
-        ...height && { height }
-    };
-
-    if (info && info.length > cutOfLength) {
-        info = concatenateStringToLength(info, cutOfLength) + "...";
-    };
-
-    if (summary && summary.length > cutOfLength) {
-        summary = concatenateStringToLength(summary, cutOfLength) + "...";
-    };
-
-    return (
-        <div style={optionalStyles} className={`relative bg-[#BDD1C3] w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-md rounded-md`}>
-            <div className="w-full">
-                <span className="text-xl">{title}</span> 
-                <p className="text-gray-700 font-light">{showInfo ? info : summary}</p>
-            </div>
-
-            <span className="font-light text-gray-600">{concatenateStringToLength(monthNumberToString(date.month), 3)} {date.year}</span>
-
-            <div className="absolute flex right-2 bottom-2">
-                { link && <ExternalLinkButton link={link} type="brutal" /> }
-                { info && <InfoButton visible={showInfo} setVisible={setShowInfo} type="brutal" /> }
-            </div>            
-        </div>
-    );
-};
-
-export const BrutalCard = ({ title, id, summary, date, link, info, height, width }: CardProps) => {
-
-    const [showInfo, setShowInfo] = useState(false);
-
-    const optionalStyles = {
-        ...width && { width },
-        ...height && { height }
-    };
-
-    if (info && info.length > cutOfLength) {
-        info = concatenateStringToLength(info, cutOfLength) + "...";
-    };
-
-    if (summary && summary.length > cutOfLength) {
-        summary = concatenateStringToLength(summary, cutOfLength) + "...";
-    };
-    
-    return (
-        <div onClick={() => openInNewTab(`https://projects.samwelzimmer.com/${id}`)} style={optionalStyles} className={`brutal-shadow relative bg-yellow-400 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border-4 border-black rounded-lg`}>
-            <div className="w-full">
-                <span className="text-xl font-medium">{title}</span> 
-                <p className="text-black font-light">{showInfo ? info : summary}</p>
-            </div>
-
-            <span className="">{concatenateStringToLength(monthNumberToString(date.month), 3)} {date.year}</span>
-
-            <div className="absolute flex right-2 bottom-2">
-                { link && <ExternalLinkButton link={link} type="brutal" /> }
-                { info && <InfoButton visible={showInfo} setVisible={setShowInfo} type="brutal" /> }
-            </div>
-            
         </div>
     );
 };

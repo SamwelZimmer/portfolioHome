@@ -20,7 +20,15 @@ export default function Home() {
           <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
         </div>
 
-        <RecentProjects />
+        <div className='flex flex-col gap-4 py-48'>
+          <hr className='w-1/3 sm:w-40 mx-auto py-8' />
+          <span className='font-semibold text-xl px-4'>Recent Activity</span>
+
+          <RecentProjects />
+
+          <span className='px-4 opacity-50'>other recent stuff coming soon</span>
+        </div>
+
     </main>
   )
 }

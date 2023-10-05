@@ -1,4 +1,4 @@
-export type StyleType = "clean" | "brutal" | "night" | "plain" | "pastel";
+export type StyleType = "clean" | "brutal" | "night" | "pastel";
 
 export type ProjectStatusType = "completed" | "abandoned" | "postponed" | "ongoing";
 
