@@ -56,8 +56,7 @@ const cardStyles: {
         "pastel": "font-light text-gray-600",
         "brutal": "",
     },
-
-}
+};
 
 export const Card = ({ title, id, summary, date, link, info, height, width, type }: CardProps) => {
 
