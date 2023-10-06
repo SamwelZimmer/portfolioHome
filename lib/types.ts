@@ -2,6 +2,8 @@ export type StyleType = "clean" | "brutal" | "night" | "glass";
 
 export type ProjectStatusType = "completed" | "abandoned" | "postponed" | "ongoing";
 
+export type Directions = "up" | "down" | "left" | "right";
+
 export interface Project {
     id: string;
     datetime: string;

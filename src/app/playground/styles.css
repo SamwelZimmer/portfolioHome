@@ -48,18 +48,3 @@
     border: 1px solid rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
 };
-
-.glass-button {
-    display: inline-block;
-    border: 0;
-    text-decoration: none;
-    background-color: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(30px);
-    color: rgba(255,255,255,0.8);
-};
- 
-.glass-button:hover {
-    background-color: rgba(255,255,255,0.2);
-};
-
