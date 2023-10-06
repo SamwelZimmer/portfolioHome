@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-
-import StyleSelector from "../components/StyleSelector";
+import Image from "next/image";
 import { useRecoilState } from "recoil";
 
+import StyleSelector from "../components/StyleSelector";
 import { StyleType } from "../lib/types";
 import { styleTypeAtom } from "../atoms/styleTypeAtom";
 
@@ -21,7 +21,7 @@ const styles: {
         "clean": "bg-white",
         "night": "bg-slate-900",
         "glass": "bg-purple-700",
-        "brutal": `bg-white`,
+        "brutal": `bg-violet-300`,
     },
 
     "h1": {
@@ -44,14 +44,23 @@ export default function Hero() {
     const [type, _] = useRecoilState(styleTypeAtom);
 
     return (
-        <section className={`${styles.section[type]} w-screen h-screen flex flex-col justify-center`}>
-          <div className='flex flex-col px-4 gap-8 w-full md:px-0 md:w-[650px] mx-auto text-center md:text-left'>
-            <h1 className={`${styles.h1[type]} text-3xl sm:text-5xl font-semibold`}>I wasn{"'"}t sure<br/> what style to use. <br /> So, I{"'"}ll let you choose.</h1>
-            <h2 className={`${styles.h2[type]} font-medium`}>Anyway... I{"'"}m Samwel</h2>
+        <section className={`${styles.section[type]} relative overflow-hidden w-screen h-screen flex flex-col justify-center`}>
+          <div className='relative flex flex-col px-4 gap-8 w-full md:px-0 md:w-[650px] mx-auto text-center md:text-left'>
+
+            <Image className="absolute -top-64 -right-20 md:-right-10" src="/brutal_graphics/brutal-quad-1.svg" alt="brutal circle asset" width={200} height={300} />
+
+
+            <h1 className={`${styles.h1[type]} z-10 text-3xl sm:text-5xl font-semibold`}>I wasn{"'"}t sure<br/> what style to use. <br /> So, I{"'"}ll let you choose.</h1>
+            <h2 className={`${styles.h2[type]} z-10 font-medium`}>Anyway... I{"'"}m Samwel</h2>
           </div>
 
-          <div className='px-4 py-12'>
-            <StyleSelector />
+          <div className='relative py-12 z-0'>
+            <div className="z-10 absolute w-full ">
+              <StyleSelector />
+            </div>
+
+            <Image className="absolute z-0 -top-32 -right-20 md:-right-10" src="/brutal_graphics/brutal-semi-circle.svg" alt="brutal circle asset" width={150} height={300} />
+
           </div>
 
           <div>
@@ -65,6 +74,9 @@ export default function Hero() {
           <div>
             <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
           </div>
+
+          <Image className="absolute -top-12 -left-20" src="/brutal_graphics/brutal-circle.svg" alt="brutal circle asset" width={300} height={300} />
+          <Image className="absolute z-0 top-[70%] left-[10%]" src="/brutal_graphics/brutal-triangle.svg" alt="brutal circle asset" width={150} height={150} />
         </section>
     );
-}
+};
