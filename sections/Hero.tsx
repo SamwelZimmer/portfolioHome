@@ -8,6 +8,7 @@ import { ReactElement, useRef, RefObject, useState, useEffect } from "react";
 import StyleSelector from "../components/StyleSelector";
 import { StyleType, Directions } from "../lib/types";
 import { styleTypeAtom } from "../atoms/styleTypeAtom";
+import './styles.css';
 
 type HeroStyleDefinition = {
     [key in StyleType]: string;
@@ -22,14 +23,14 @@ const styles: {
     "section": {
         "clean": "bg-white",
         "night": "bg-slate-900",
-        "glass": "bg-purple-700",
+        "glass": "bg-blue-200/50",
         "brutal": `bg-violet-300`,
     },
 
     "h1": {
         "clean": "",
         "night": "text-white",
-        "glass": "text-white/80",
+        "glass": "text-white/70",
         "brutal": ``,
     },
 
@@ -49,6 +50,23 @@ export default function Hero() {
 
     return (
         <motion.div ref={constraintsRef} className={`${styles.section[type]} relative z-0 overflow-hidden w-screen h-screen flex flex-col justify-center`}>
+        
+        { type === "glass" &&
+          <>
+           <div className="absolute blob-animation -top-32 left-[10%] aspect-square w-1/2 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 " />
+            <div className="absolute blob-animation animation-delay-2000 -top-12 -right-20 w-[50%] aspect-square bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 " />
+            <div className="absolute bottom-1/2 translate-y-1/2 -right-1/3 h-[70%] aspect-square bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 " />
+            <div className="absolute top-1/2 -translate-y-1/2 right-1/2 h-[80%] aspect-square bg-pink-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 " />
+            <div className="absolute blob-animation animation-delay-2000 top-1/2 right-1/3 h-[80%] aspect-square bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 " />
+            <div className="absolute blob-animation animation-delay-4000 top-1/2 left-1/2 h-[80%] aspect-square bg-pink-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 " />
+          </>
+        }
+       
+
+
+
+          {/* <div className="absolute h-1/2 w-1/2 bg-gradient-to-t from-blue-400 to-green-300 rounded-full blur opacity-25"></div> */}
+
           <div className='relative flex flex-col px-4 gap-8 w-full md:px-0 md:w-[650px] mx-auto text-center md:text-left'>
 
             { type === "brutal" && <BackgroundAsset classes="absolute -top-64 z-0 -right-20 md:-right-10" constraintsRef={constraintsRef} direction="left" asset={<Image draggable="false" src="/brutal_graphics/brutal-quad-1.svg" alt="brutal circle asset" width={200} height={300} />} /> }

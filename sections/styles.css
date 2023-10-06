@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.glass-background {
+    background: rgb(238,174,202);
+    background: linear-gradient(323deg, rgba(238,174,202,1) 0%, rgba(198,180,216,1) 34%, rgba(148,187,233,1) 60%, rgba(148,187,233,1) 98%);
+    background-size: 200% 100%; /* Make the gradient twice the size of the container */
+    animation: shiftGradient 5s infinite alternate; /* Animate over 5 seconds, looping infinitely, and reversing on alternate iterations */
+}
+  
+@keyframes shiftGradient {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0% 0;
+    }
+}
+
+@keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+.blob-animation {
+    animation: blob 6s infinite alternate;
+}
+  
+
+@layer utilities {
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+  }
+  

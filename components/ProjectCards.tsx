@@ -36,7 +36,7 @@ const cardStyles: {
     "card": {
         "clean": `relative cursor-pointer bg-white w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border rounded-md shadow-md`,
         "night": `relative cursor-pointer bg-slate-800 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border border-black rounded-md`,
-        "glass": "relative cursor-pointer bg-[#BDD1C3] w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-md rounded-md",
+        "glass": "relative cursor-pointer bg-white/80 backdrop-blur-xl w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-sm rounded-md",
         "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border-4 border-black rounded-lg",
     },
     "title": {

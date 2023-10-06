@@ -16,7 +16,7 @@ const styles: {
     "btn": {
         "clean": "bg-white border rounded-lg shadow-md hover:border-black my-1 py-3",
         "night": "bg-slate-800 border-slate-800 rounded-lg text-white my-1 py-3",
-        "glass": "backdrop-blur-xl bg-black/10 hover:bg-black/20 text-white/80 border border-black/10 rounded-lg my-1 py-3",
+        "glass": "backdrop-blur-xl bg-white/30 hover:bg-white/50 text-white/80 border border-white/10 rounded-lg my-1 py-3 shadow-sm",
         "brutal": `bg-yellow-400 border-black border-2 text-black rounded-full px-8 font-semibold brutal-shadow hover:bg-pink-300 m-0`,
     },
 };
