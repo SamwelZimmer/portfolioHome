@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Lexend } from 'next/font/google';
 
+import RecoilRootWrapper from './RecoilRootWrapper'
+
 const lexend = Lexend({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={lexend.className}>{children}</body>
+      <body className={lexend.className}>
+        <RecoilRootWrapper>{children}</RecoilRootWrapper>
+      </body>
     </html>
   )
 }

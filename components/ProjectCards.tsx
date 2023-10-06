@@ -4,9 +4,11 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 
 import { StyleType, DateObject } from "../lib/types";
 import { monthNumberToString, concatenateStringToLength, openInNewTab } from "../lib/helpers";
+import { styleTypeAtom } from "../atoms/styleTypeAtom";
 
 interface CardProps {
     title: string;
@@ -17,7 +19,6 @@ interface CardProps {
     info?: string;
     height?: number;
     width?: number;
-    type: StyleType;
 }
 
 const cutOfLength = 65;
@@ -35,32 +36,33 @@ const cardStyles: {
     "card": {
         "clean": `relative cursor-pointer bg-white w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border rounded-md shadow-md`,
         "night": `relative cursor-pointer bg-slate-800 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border border-black rounded-md`,
-        "pastel": "relative cursor-pointer bg-[#BDD1C3] w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-md rounded-md",
+        "glass": "relative cursor-pointer bg-[#BDD1C3] w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-md rounded-md",
         "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border-4 border-black rounded-lg",
     },
     "title": {
         "clean": "text-xl",
         "night": "text-xl text-gray-300",
-        "pastel": "text-xl",
+        "glass": "text-xl",
         "brutal": "text-xl font-medium",
     },
     "summary": {
         "clean": "text-gray-500 font-light",
         "night": "text-gray-400 font-light",
-        "pastel": "text-gray-700 font-light",
+        "glass": "text-gray-700 font-light",
         "brutal": "text-black font-light",
     },
     "date": {
         "clean": "font-light text-gray-400",
         "night": "font-light text-gray-400",
-        "pastel": "font-light text-gray-600",
+        "glass": "font-light text-gray-600",
         "brutal": "",
     },
 };
 
-export const Card = ({ title, id, summary, date, link, info, height, width, type }: CardProps) => {
+export const Card = ({ title, id, summary, date, link, info, height, width }: CardProps) => {
 
     const [showInfo, setShowInfo] = useState(false);
+    const [type, _] = useRecoilState(styleTypeAtom);
 
     const optionalStyles = {
         ...width && { width },

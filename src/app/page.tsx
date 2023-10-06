@@ -1,28 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import StyleSelector from '../../components/StyleSelector';
 import RecentProjects from '../../sections/RecentProjects';
 import ContactBar from '../../components/ContactBar';
+import Hero from '../../sections/Hero';
 
 export default function Home() {
   return (
     <main className="w-screen">
-        <h1>Samwel Zimmer</h1>
 
-        <div>
-          <Link className='underline hover:opacity-50' href={"https://projects.samwelzimmer.com/"}>Projects</Link>
-        </div>
+        <Hero />
 
-        <div>
-          <Link className='underline hover:opacity-50' href={"/playground"}>Playground</Link>
-        </div>
-
-        <div>
-          <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
-        </div>
-
-        <div className='w-full py-48'>
-          <ContactBar type='brutal' />
+        <div className='w-full'>
+          <ContactBar />
         </div>
 
         <div className='flex flex-col gap-4'>

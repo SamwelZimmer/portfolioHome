@@ -16,7 +16,7 @@ export default async function RecentProjects() {
                 <div className="flex flex-row gap-4 overflow-hidden w-max p-4">
                     {
                         Object.keys(projects).map((key, i) => (
-                            <Card key={key} type="brutal" id={projects[i].id} title={projects[i].title || ""} summary={projects[i].summary || ""} date={convertTimestampToDate(projects[i].datetime)} link={projects[i].link} />
+                            <Card key={key} id={projects[i].id} title={projects[i].title || ""} summary={projects[i].summary || ""} date={convertTimestampToDate(projects[i].datetime)} link={projects[i].link} />
                         ))
                     }
                 </div>
