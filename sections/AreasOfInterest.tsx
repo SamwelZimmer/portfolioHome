@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useRecoilState } from "recoil";
+import Image from "next/image";
 
 import { openInNewTab } from "../lib/helpers";
 
 import { StyleType, Directions } from "../lib/types";
 import { styleTypeAtom } from "../atoms/styleTypeAtom";
+import { ArrowDownRight, ArrowDownSkewed, ArrowRight, ArrowDown, ArrowLeft, ArrowUp, ArrowUpLeft, ArrowDownLeft } from "../components/Arrows";
 import './styles.css';
 
 type HeroStyleDefinition = {
@@ -22,7 +24,7 @@ const styles: {
     "section": {
         "clean": "bg-white",
         "night": "bg-background-night",
-        "glass": "bg-slate-500",
+        "glass": "shifting-background",
         "brutal": `bg-pink-100`,
     },
 
@@ -36,7 +38,7 @@ const styles: {
     "btn": {
         "clean": "shadow-md border-black hover:bg-black hover:text-white",
         "night": "bg-accent-night hover:bg-secondary-night hover:text-text-night border-primary-night shadow-lg shadow-cyan-500/40",
-        "glass": "backdrop-blur-xl bg-white/30 hover:bg-white/50 text-white/80 border border-white/10 rounded-lg my-1 py-3 shadow-sm",
+        "glass": "backdrop-blur-xl glass-btn border border-white/10 rounded-lg",
         "brutal": "brutal-shadow bg-orange-300 hover:bg-purple-300 rounded-none border-2 border-black font-semibold",
     },
 };
@@ -48,8 +50,13 @@ export default function AreasOfInterest() {
     return (
         <> 
             <section className={`${styles.section[type]} w-full mx-auto  flex flex-col px-8 py-32`} >
-                <div className={`${styles.backgroundCard[type]} w-full md:w-[700px] flex flex-col gap-20 mx-auto p-8 md:p-20`}>
-                    <div className="flex flex-row">
+                <div className={`${styles.backgroundCard[type]} w-full md:w-[700px] flex flex-col gap-20 mx-auto p-8 py-20 md:p-20`}>
+                    <div className="flex flex-row relative">
+
+                        {/* <div className="absolute top-0 left-0">
+                            <ArrowDownLeft colour="#00FF00" />
+                        </div> */}
+
                         <AreaOfInterest type={type} right explainText="this is explainer text" buttonText="projects" link="https://projects.samwelzimmer.com/" />
                     </div>
 

@@ -1,12 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import RecentProjects from '../../sections/RecentProjects';
+import RecentProjects from '../../components/RecentProjects';
 import ContactBar from '../../components/ContactBar';
 import Hero from '../../sections/Hero';
 import AreasOfInterest from '../../sections/AreasOfInterest';
+import AboutSection from '../../sections/AboutSection';
+import RecentActivitySection from '../../sections/RecentActivitySection';
+import { Project } from '../../lib/types';
+import { getRecentProjects } from '../../lib/firebase';
 
-export default function Home() {
+export default async function Home() {
+
+  let projects: Project[] = await getRecentProjects(5);
+
   return (
     <main className="w-screen">
 
@@ -20,14 +27,13 @@ export default function Home() {
           <AreasOfInterest />
         </div>
 
-
-        <div className='flex flex-col gap-4'>
-          <hr className='w-1/3 sm:w-40 mx-auto py-8' />
-          <span className='font-semibold text-xl px-4'>Recent Activity</span>
-          <RecentProjects />
-          <span className='px-4 opacity-50'>other recent stuff coming soon</span>
+        <div className='w-full'>
+          <AboutSection />
         </div>
 
+        <div className='w-full'>
+          <RecentActivitySection projects={projects} />
+        </div>
     </main>
   )
 }

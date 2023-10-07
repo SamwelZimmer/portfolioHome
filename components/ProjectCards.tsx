@@ -36,7 +36,7 @@ const cardStyles: {
     "card": {
         "clean": `relative cursor-pointer bg-white rounded-md shadow-md`,
         "night": `relative cursor-pointer bg-secondary-night border-black rounded-md shadow-md`,
-        "glass": "relative cursor-pointer bg-white/80 backdrop-blur-xl shadow-sm rounded-md",
+        "glass": "backdrop-blur-xl bg-white/30 hover:bg-white/50 text-white/80 border border-white/10 rounded-lg my-1 py-3 shadow-sm",
         "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 border-4 border-black rounded-lg",
     },
     "title": {

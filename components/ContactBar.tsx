@@ -9,7 +9,7 @@ import { useState } from "react";
 import { openInNewTab } from "../lib/helpers";
 import { StyleType } from "../lib/types";
 import { styleTypeAtom } from "../atoms/styleTypeAtom";
-import { type } from "os";
+import './styles.css';
 
 type ContactBarStyleDefinition = {
     [key in StyleType]: string;
@@ -22,14 +22,14 @@ const styles: {
     "background": {
         "clean": "bg-black border-black text-white",
         "night": "bg-secondary-night border-secondary-night text-white",
-        "glass": "bg-pink-200 border-pink-200",
+        "glass": "bg-white border-white",
         "brutal": "bg-green-200 border-black text-black",
     },
     "iconButton": {
         "clean": "",
         "night": "",
-        "glass": "",
-        "brutal": "border-black border-2 bg-[#A6FAFF] hover:bg-[#79F7FF] active:bg-[#53f2fc] p-2",
+        "glass": "glass-btn rounded-md text-black/70",
+        "brutal": "border-black border-2 bg-[#A6FAFF] hover:bg-[#79F7FF] active:bg-[#53f2fc]",
     }
 };
 
@@ -62,7 +62,7 @@ const ContactButton = ({ icon, url, type }: ContactButtonProps ) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => openInNewTab(url)}
-            className={`${styles.iconButton[type]} ${(type === "brutal" && isHovered) && "brutal-shadow" }`}
+            className={`${styles.iconButton[type]} ${(type === "brutal" && isHovered) && "brutal-shadow" } p-2`}
         >
             {icon}
 
