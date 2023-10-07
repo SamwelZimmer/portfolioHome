@@ -22,7 +22,7 @@ const styles: {
 
     "section": {
         "clean": "bg-white",
-        "night": "bg-slate-900",
+        "night": "bg-background-night",
         "glass": "bg-blue-200/50",
         "brutal": `bg-violet-300`,
     },

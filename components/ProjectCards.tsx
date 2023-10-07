@@ -34,26 +34,26 @@ const cardStyles: {
     date: CardStyleDefinition;
     } = {
     "card": {
-        "clean": `relative cursor-pointer bg-white w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border rounded-md shadow-md`,
-        "night": `relative cursor-pointer bg-slate-800 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border border-black rounded-md`,
-        "glass": "relative cursor-pointer bg-white/80 backdrop-blur-xl w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 shadow-sm rounded-md",
-        "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border-4 border-black rounded-lg",
+        "clean": `relative cursor-pointer bg-white rounded-md shadow-md`,
+        "night": `relative cursor-pointer bg-secondary-night border-black rounded-md shadow-md`,
+        "glass": "relative cursor-pointer bg-white/80 backdrop-blur-xl shadow-sm rounded-md",
+        "brutal": "brutal-shadow cursor-pointer relative bg-yellow-400 border-4 border-black rounded-lg",
     },
     "title": {
         "clean": "text-xl",
-        "night": "text-xl text-gray-300",
+        "night": "text-xl text-text-night",
         "glass": "text-xl",
         "brutal": "text-xl font-medium",
     },
     "summary": {
         "clean": "text-gray-500 font-light",
-        "night": "text-gray-400 font-light",
+        "night": "text-text-night/50 font-light",
         "glass": "text-gray-700 font-light",
         "brutal": "text-black font-light",
     },
     "date": {
         "clean": "font-light text-gray-400",
-        "night": "font-light text-gray-400",
+        "night": "font-light text-text-night/70",
         "glass": "font-light text-gray-600",
         "brutal": "",
     },
@@ -78,7 +78,7 @@ export const Card = ({ title, id, summary, date, link, info, height, width }: Ca
     };
 
     return (
-        <div onClick={() => openInNewTab(`https://projects.samwelzimmer.com/${id}`)} style={optionalStyles} className={cardStyles.card[type]}>
+        <div onClick={() => openInNewTab(`https://projects.samwelzimmer.com/${id}`)} style={optionalStyles} className={`${cardStyles.card[type]} w-full sm:w-[400px] h-36 flex flex-col justify-between p-4 border`}>
             <div className="w-full">
                 <span className={cardStyles.title[type]}>{title}</span> 
                 <p className={cardStyles.summary[type]}>{showInfo ? info : summary}</p>

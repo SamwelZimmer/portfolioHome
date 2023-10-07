@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import StyleSelector from '../../components/StyleSelector';
 import RecentProjects from '../../sections/RecentProjects';
 import ContactBar from '../../components/ContactBar';
 import Hero from '../../sections/Hero';
+import AreasOfInterest from '../../sections/AreasOfInterest';
 
 export default function Home() {
   return (
@@ -15,18 +15,11 @@ export default function Home() {
         <div className='w-full'>
           <ContactBar />
         </div>
-        
-        <div>
-          <Link className='underline hover:opacity-50' href={"https://projects.samwelzimmer.com/"}>Projects</Link>
+
+        <div className='w-full'>
+          <AreasOfInterest />
         </div>
 
-        <div>
-          <Link className='underline hover:opacity-50' href={"/playground"}>Playground</Link>
-        </div>
-
-        <div>
-          <Link className='underline hover:opacity-50' href={"https://masters.samwelzimmer.com/"}>Master{"'"}s Thesis</Link>
-        </div>
 
         <div className='flex flex-col gap-4'>
           <hr className='w-1/3 sm:w-40 mx-auto py-8' />

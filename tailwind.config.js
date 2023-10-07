@@ -14,6 +14,14 @@ module.exports = {
       fontFamily: {
         'sans': ['Lexend'],
       },
-    },  },
+      colors: {
+        'text-night': '#e5edf0',
+        'background-night': '#090e10',
+        'primary-night': '#293f47',
+        'secondary-night': '#131d20',
+        'accent-night': '#5d90a2',
+       },
+    },  
+  },
   plugins: [],
 }

@@ -21,7 +21,7 @@ const styles: {
     } = {
     "background": {
         "clean": "bg-black border-black text-white",
-        "night": "bg-slate-800 border-slate-800 text-white",
+        "night": "bg-secondary-night border-secondary-night text-white",
         "glass": "bg-pink-200 border-pink-200",
         "brutal": "bg-green-200 border-black text-black",
     },
