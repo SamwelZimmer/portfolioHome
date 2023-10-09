@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ReactElement, useRef, RefObject, useState, useEffect } from "react";
 
 import StyleSelector from "../components/StyleSelector";
@@ -46,10 +46,32 @@ export default function Hero() {
 
     const [type, _] = useRecoilState(styleTypeAtom);
 
-    const constraintsRef = useRef<HTMLDivElement | null>(null)
+    const constraintsRef = useRef<HTMLDivElement | null>(null);
+
+    const cardVariants: Variants = {
+      offscreen: {
+        y: "70%",
+        opacity: 0,
+      },
+      onscreen: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          bounce: 0.4,
+          duration: 0.8
+        }
+      }
+  };
 
     return (
-        <motion.div ref={constraintsRef} className={`${styles.section[type]} relative z-0 overflow-hidden w-screen h-screen flex flex-col justify-center`}>
+        <motion.div 
+          ref={constraintsRef} 
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+          className={`${styles.section[type]} relative z-0 overflow-hidden w-screen h-screen flex flex-col justify-center`}
+        >
         
         { type === "glass" &&
           <>
@@ -67,18 +89,18 @@ export default function Hero() {
 
           {/* <div className="absolute h-1/2 w-1/2 bg-gradient-to-t from-blue-400 to-green-300 rounded-full blur opacity-25"></div> */}
 
-          <div className='relative flex flex-col px-4 gap-8 w-full md:px-0 md:w-[650px] mx-auto text-center md:text-left'>
+          <motion.div variants={cardVariants} className='relative flex flex-col px-4 gap-8 w-full md:px-0 md:w-[650px] mx-auto text-center md:text-left'>
 
             { type === "brutal" && <BackgroundAsset classes="absolute -top-64 z-0 -right-20 md:-right-10" constraintsRef={constraintsRef} direction="left" asset={<Image draggable="false" src="/brutal_graphics/brutal-quad-1.svg" alt="brutal circle asset" width={200} height={300} />} /> }
 
             <h1 className={`${styles.h1[type]} z-10 text-3xl sm:text-5xl font-semibold`}>I wasn{"'"}t sure<br/> what style to use. <br /> So, I{"'"}ll let you choose.</h1>
             <h2 className={`${styles.h2[type]} z-10 font-medium`}>Anyway... I{"'"}m Samwel</h2>
-          </div>
+          </motion.div>
 
           <div className='relative py-12 z-10'>
-            <div className="z-20 absolute w-full ">
+            <motion.div variants={cardVariants} className="z-20 absolute w-full ">
               <StyleSelector />
-            </div>
+            </motion.div>
 
             { type === "brutal" && <BackgroundAsset classes="absolute z-0 -top-32 -right-20 md:-right-10" constraintsRef={constraintsRef} direction="left" asset={<Image draggable="false" src="/brutal_graphics/brutal-semi-circle.svg" alt="brutal circle asset" width={150} height={300} />} /> }
           </div>
